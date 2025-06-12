@@ -3,12 +3,9 @@
 ## Telepítés
 
 ### Provider regisztrálása
-config/app.php
+bootstrap/providers.php
 ```php
-'providers' => ServiceProvider::defaultProviders()->merge([
-    /*
-    * Package Service Providers...
-    */
+return [
     \Molitor\Admin\Providers\AdminServiceProvider::class,
-])->toArray(),
+];
 ```
