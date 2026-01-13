@@ -18,6 +18,13 @@ class ShareAdminData
     {
         Inertia::share('menu', fn () => Auth::check() ? Menu::build('admin')->toArray() : []);
 
+        Inertia::share('flash', fn () => [
+            'success' => $request->session()->get('success'),
+            'error' => $request->session()->get('error'),
+            'info' => $request->session()->get('info'),
+            'warning' => $request->session()->get('warning'),
+        ]);
+
         return $next($request);
     }
 }
