@@ -4,7 +4,7 @@ namespace Molitor\Admin\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController
+class DashboardController extends BaseAdminController
 {
     /**
      * Display the admin dashboard.
@@ -14,4 +14,3 @@ class DashboardController
         return inertia('Admin/Dashboard');
     }
 }
-
