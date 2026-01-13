@@ -12,6 +12,7 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useActiveUrl } from '@/composables/useActiveUrl';
 import { useIconMap } from '@/composables/useIconMap';
+import { useMenuState } from '../composables/useMenuState';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { ChevronRight } from 'lucide-vue-next';
@@ -22,6 +23,7 @@ const items = computed(() => page.props.menu as NavItem[] || []);
 
 const { urlIsActive } = useActiveUrl();
 const { getIcon } = useIconMap();
+const { isMenuOpen, setMenuOpen } = useMenuState();
 </script>
 
 <template>
@@ -33,7 +35,8 @@ const { getIcon } = useIconMap();
                 <Collapsible
                     v-if="item.items && item.items.length > 0"
                     as-child
-                    :default-open="item.isActive"
+                    :open="isMenuOpen(item.title, item.isActive)"
+                    @update:open="(open) => setMenuOpen(item.title, open)"
                     class="group/collapsible"
                 >
                     <SidebarMenuItem>
@@ -57,6 +60,7 @@ const { getIcon } = useIconMap();
                                         :is-active="urlIsActive(subItem.href)"
                                     >
                                         <Link :href="subItem.href || '#'">
+                                            <component v-if="getIcon(subItem.icon)" :is="getIcon(subItem.icon)" />
                                             <span>{{ subItem.title }}</span>
                                         </Link>
                                     </SidebarMenuSubButton>
