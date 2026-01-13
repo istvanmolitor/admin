@@ -3,6 +3,7 @@
 namespace Molitor\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Molitor\Admin\Middleware\ShareAdminData;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,9 @@ class AdminServiceProvider extends ServiceProvider
 
         // Load migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        // Register middleware
+        $this->app['router']->aliasMiddleware('admin.share', ShareAdminData::class);
 
         // Publishing is only available when running in console
         if ($this->app->runningInConsole()) {
