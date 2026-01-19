@@ -8,12 +8,12 @@ import {
     SidebarMenuSub,
     SidebarMenuSubButton,
     SidebarMenuSubItem,
-} from '@/components/ui/sidebar';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { useActiveUrl } from '@/composables/useActiveUrl';
-import { useIconMap } from '@/composables/useIconMap';
-import { useMenuState } from '../composables/useMenuState';
-import { type NavItem } from '@/types';
+} from '@admin/components/ui/sidebar';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@admin/components/ui/collapsible';
+import { useActiveUrl } from '@admin/composables/useActiveUrl';
+import { useIconMap } from '@admin/composables/useIconMap';
+import { useMenuState } from '@admin/composables/useMenuState';
+import { type NavItem } from '@admin/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { ChevronRight } from 'lucide-vue-next';
 import { computed } from 'vue';

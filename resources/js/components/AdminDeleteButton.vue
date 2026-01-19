@@ -10,8 +10,8 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+} from '@admin/components/ui/dialog';
+import { Button } from '@admin/components/ui/button';
 
 interface Props {
     url: string;

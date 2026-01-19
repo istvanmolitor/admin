@@ -10,8 +10,8 @@ import {
     PaginationNext,
     PaginationPrev,
     PaginationInfo,
-} from '@/components/ui/pagination';
-import { Button } from '@/components/ui/button';
+} from '@admin/components/ui/pagination';
+import { Button } from '@admin/components/ui/button';
 import { route } from '@/lib/route';
 
 interface Props {

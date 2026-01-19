@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { router } from '@inertiajs/vue3';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from '@admin/components/ui/input';
+import { Button } from '@admin/components/ui/button';
 import { trans } from 'laravel-vue-i18n';
 
 interface Props {
