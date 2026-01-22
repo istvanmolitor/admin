@@ -17,6 +17,14 @@ class AdminServiceProvider extends ServiceProvider
             __DIR__ . '/../config/admin.php',
             'admin'
         );
+
+        $this->publishes([
+            __DIR__ . '/../config/admin.php' => config_path('admin.php'),
+        ], 'admin-config');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/js/components' => resource_path('js/components/vendor/admin'),
+        ], 'admin-components');
     }
 
     /**
@@ -35,24 +43,6 @@ class AdminServiceProvider extends ServiceProvider
 
         // Register middleware
         $this->app['router']->aliasMiddleware('admin.share', ShareAdminData::class);
-
-        // Publishing is only available when running in console
-        if ($this->app->runningInConsole()) {
-            // Publish configuration
-            $this->publishes([
-                __DIR__ . '/../config/admin.php' => config_path('admin.php'),
-            ], 'admin-config');
-
-            // Publish views
-            $this->publishes([
-                __DIR__ . '/../../resources/views' => resource_path('views/vendor/admin'),
-            ], 'admin-views');
-
-            // Publish assets
-            $this->publishes([
-                __DIR__ . '/../public' => public_path('vendor/admin'),
-            ], 'admin-assets');
-        }
     }
 }
 
