@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import Heading from '@/components/Heading.vue';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { useCurrentUrl } from '@/composables/useCurrentUrl';
-import { toUrl } from '@/lib/utils';
+import Heading from '@admin/components/Heading.vue';
+import { Button } from '@admin/components/ui/button';
+import { Separator } from '@admin/components/ui/separator';
+import { useCurrentUrl } from '@admin/composables/useCurrentUrl';
+import { toUrl } from '@admin/lib/utils';
 import { edit as editAppearance } from '@/routes/appearance';
 import { edit as editProfile } from '@/routes/profile';
 import { show } from '@/routes/two-factor';
 import { edit as editPassword } from '@/routes/user-password';
-import { type NavItem } from '@/types';
+import { type NavItem } from '@admin/types';
 import { Link } from '@inertiajs/vue3';
 
 const sidebarNavItems: NavItem[] = [

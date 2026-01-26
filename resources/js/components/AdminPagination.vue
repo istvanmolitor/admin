@@ -12,7 +12,7 @@ import {
     PaginationInfo,
 } from '@admin/components/ui/pagination';
 import { Button } from '@admin/components/ui/button';
-import { route } from '@/lib/route';
+import { route } from '@admin/lib/route';
 
 interface Props {
     routeName: string;

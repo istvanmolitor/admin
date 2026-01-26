@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useI18n } from '@/composables/useI18n';
+import { useI18n } from '@admin/composables/useI18n';
 import { getActiveLanguage } from 'laravel-vue-i18n';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@admin/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@admin/components/ui/card';
 
 const { t, switchLanguage } = useI18n();
 const currentLocale = ref(getActiveLanguage());

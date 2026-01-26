@@ -5,9 +5,9 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { toUrl } from '@/lib/utils';
-import { type NavItem } from '@/types';
+} from '@admin/components/ui/sidebar';
+import { toUrl } from '@admin/lib/utils';
+import { type NavItem } from '@admin/types';
 
 type Props = {
     items: NavItem[];

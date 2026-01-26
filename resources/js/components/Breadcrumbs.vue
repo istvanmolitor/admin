@@ -6,8 +6,8 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
+} from '@admin/components/ui/breadcrumb';
+import type { BreadcrumbItem as BreadcrumbItemType } from '@admin/types';
 import { Link } from '@inertiajs/vue3';
 
 type Props = {

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
-import Heading from '@/components/Heading.vue';
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
+import Heading from '@admin/components/Heading.vue';
+import InputError from '@admin/components/InputError.vue';
+import { Button } from '@admin/components/ui/button';
 import {
     Dialog,
     DialogClose,
@@ -12,9 +12,9 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+} from '@admin/components/ui/dialog';
+import { Input } from '@admin/components/ui/input';
+import { Label } from '@admin/components/ui/label';
 import { Form } from '@inertiajs/vue3';
 import { useTemplateRef } from 'vue';
 

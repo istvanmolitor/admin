@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import AlertError from '@/components/AlertError.vue';
-import InputError from '@/components/InputError.vue';
-import { Button } from '@/components/ui/button';
+import AlertError from '@admin/components/AlertError.vue';
+import InputError from '@admin/components/InputError.vue';
+import { Button } from '@admin/components/ui/button';
 import {
     Dialog,
     DialogContent,
     DialogDescription,
     DialogHeader,
     DialogTitle,
-} from '@/components/ui/dialog';
+} from '@admin/components/ui/dialog';
 import {
     InputOTP,
     InputOTPGroup,
     InputOTPSlot,
-} from '@/components/ui/input-otp';
-import { Spinner } from '@/components/ui/spinner';
-import { useAppearance } from '@/composables/useAppearance';
-import { useTwoFactorAuth } from '@/composables/useTwoFactorAuth';
+} from '@admin/components/ui/input-otp';
+import { Spinner } from '@admin/components/ui/spinner';
+import { useAppearance } from '@admin/composables/useAppearance';
+import { useTwoFactorAuth } from '@admin/composables/useTwoFactorAuth';
 import { confirm } from '@/routes/two-factor';
-import type { TwoFactorConfigContent } from '@/types';
+import type { TwoFactorConfigContent } from '@admin/types';
 import { Form } from '@inertiajs/vue3';
 import { useClipboard } from '@vueuse/core';
 import { Check, Copy, ScanLine } from 'lucide-vue-next';

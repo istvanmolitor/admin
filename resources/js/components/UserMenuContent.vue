@@ -4,11 +4,11 @@ import {
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu';
-import UserInfo from '@/components/UserInfo.vue';
+} from '@admin/components/ui/dropdown-menu';
+import UserInfo from '@admin/components/UserInfo.vue';
 import { logout } from '@/routes';
 import { edit } from '@/routes/profile';
-import type { User } from '@/types';
+import type { User } from '@admin/types';
 import { Link, router } from '@inertiajs/vue3';
 import { LogOut, Settings } from 'lucide-vue-next';
 
