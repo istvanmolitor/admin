@@ -1,19 +1,21 @@
 <script setup lang="ts">
+import { PaginationRoot, type PaginationRootEmits, type PaginationRootProps } from 'reka-ui'
 import { cn } from '@admin/lib/utils'
 
-interface Props {
+interface Props extends PaginationRootProps {
   class?: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+const emit = defineEmits<PaginationRootEmits>()
 </script>
 
 <template>
-  <nav
-    role="navigation"
-    aria-label="pagination"
+  <PaginationRoot
+    v-bind="props"
     :class="cn('mx-auto flex w-full justify-center', props.class)"
+    @update:page="emit('update:page', $event)"
   >
     <slot />
-  </nav>
+  </PaginationRoot>
 </template>

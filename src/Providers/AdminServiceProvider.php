@@ -26,7 +26,7 @@ class AdminServiceProvider extends ServiceProvider
         ], 'admin');
 
         $this->publishes([
-            __DIR__ . '/../../resources/js/pages/Admin' => resource_path('js/pages/Admin/User'),
+            __DIR__ . '/../../resources/js/pages/Admin' => resource_path('js/pages/Admin'),
         ], 'admin-pages');
     }
 
