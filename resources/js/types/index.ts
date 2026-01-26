@@ -1,19 +1,14 @@
-/**
- * Navigation item type
- */
-export interface NavItem {
-    title: string
-    url?: string
-    icon?: string
-    isActive?: boolean
-    items?: NavItem[]
-    badge?: string | number
-    disabled?: boolean
-}
+export * from './auth';
+export * from './navigation';
+export * from './ui';
 
-/**
- * Menu item with children
- */
-export interface MenuItem extends NavItem {
-    children?: MenuItem[]
-}
+import type { Auth } from './auth';
+
+export type AppPageProps<
+    T extends Record<string, unknown> = Record<string, unknown>,
+> = T & {
+    name: string;
+    auth: Auth;
+    sidebarOpen: boolean;
+    [key: string]: unknown;
+};

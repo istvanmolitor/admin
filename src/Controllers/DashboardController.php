@@ -11,6 +11,6 @@ class DashboardController extends BaseAdminController
      */
     public function index(Request $request)
     {
-        return inertia('Admin/User/Dashboard');
+        return inertia('Admin/Dashboard');
     }
 }
