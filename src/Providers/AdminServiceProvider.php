@@ -18,7 +18,11 @@ class AdminServiceProvider extends ServiceProvider
             'admin'
         );
 
-        $this->registerPublishables();
+        $this->publishes([
+            __DIR__ . '/../config/admin.php' => config_path('admin.php'),
+            __DIR__ . '/../../resources/js' => resource_path('vendor/admin/js'),
+            __DIR__ . '/../../resources/css' => resource_path('vendor/admin/css'),
+        ], 'admin');
     }
 
     /**
@@ -37,69 +41,6 @@ class AdminServiceProvider extends ServiceProvider
 
         // Register middleware
         $this->app['router']->aliasMiddleware('admin.share', ShareAdminData::class);
-    }
-
-    /**
-     * Register publishable resources.
-     */
-    protected function registerPublishables(): void
-    {
-        // Publish configuration file
-        $this->publishes([
-            __DIR__ . '/../config/admin.php' => config_path('admin.php'),
-        ], 'admin-config');
-
-        // Publish Vue components
-        $this->publishes([
-            __DIR__ . '/../../resources/js/components' => resource_path('js/components/admin'),
-        ], 'admin-components');
-
-        // Publish shadcn-vue UI components
-        if (is_dir(__DIR__ . '/../../resources/js/components/ui')) {
-            $this->publishes([
-                __DIR__ . '/../../resources/js/components/ui' => resource_path('js/components/ui'),
-            ], 'admin-ui');
-        }
-
-        // Publish TypeScript/JS utilities and composables
-        if (is_dir(__DIR__ . '/../../resources/js/lib')) {
-            $this->publishes([
-                __DIR__ . '/../../resources/js/lib' => resource_path('js/lib'),
-            ], 'admin-lib');
-        }
-
-        if (is_dir(__DIR__ . '/../../resources/js/composables')) {
-            $this->publishes([
-                __DIR__ . '/../../resources/js/composables' => resource_path('js/composables/admin'),
-            ], 'admin-composables');
-        }
-
-        // Publish CSS/styles
-        if (is_dir(__DIR__ . '/../../resources/css')) {
-            $this->publishes([
-                __DIR__ . '/../../resources/css' => resource_path('css/admin'),
-            ], 'admin-styles');
-        }
-
-        // Publish views (if any)
-        if (is_dir(__DIR__ . '/../../resources/views')) {
-            $this->publishes([
-                __DIR__ . '/../../resources/views' => resource_path('views/vendor/admin'),
-            ], 'admin-views');
-        }
-
-        // Publish assets (public files)
-        if (is_dir(__DIR__ . '/../../resources/public')) {
-            $this->publishes([
-                __DIR__ . '/../../resources/public' => public_path('vendor/admin'),
-            ], 'admin-public');
-        }
-
-        // Publish all resources at once
-        $this->publishes([
-            __DIR__ . '/../config/admin.php' => config_path('admin.php'),
-            __DIR__ . '/../../resources/js/components' => resource_path('js/components/admin'),
-        ], 'admin-all');
     }
 }
 
