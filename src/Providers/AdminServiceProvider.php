@@ -22,7 +22,12 @@ class AdminServiceProvider extends ServiceProvider
             __DIR__ . '/../config/admin.php' => config_path('admin.php'),
             __DIR__ . '/../../resources/js' => resource_path('vendor/admin/js'),
             __DIR__ . '/../../resources/css' => resource_path('vendor/admin/css'),
+            __DIR__ . '/../../resources/js/pages/Admin' => resource_path('js/pages/Admin/User'),
         ], 'admin');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/js/pages/Admin' => resource_path('js/pages/Admin/User'),
+        ], 'admin-pages');
     }
 
     /**
