@@ -29,7 +29,6 @@ const { isMenuOpen, setMenuOpen } = useMenuState();
 <template>
     <SidebarGroup class="px-2 py-0">
         <SidebarGroupLabel>Platform</SidebarGroupLabel>
-        iiiiiiiiiiii
         <SidebarMenu>
             <template v-for="item in items" :key="item.title">
                 <!-- Menu item with children (collapsible) -->

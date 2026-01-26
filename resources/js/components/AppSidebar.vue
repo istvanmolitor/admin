@@ -15,8 +15,8 @@ import { dashboard } from '@/routes';
 import { type NavItem } from '@admin/types';
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
-import AppLogo from './AppLogo.vue';
-import { AdminMainNav } from '@admin/components/AdminMainNav.vue';
+import AppLogo from '@admin/components/AppLogo.vue';
+import AdminMainNav from '@admin/components/AdminMainNav.vue';
 
 const mainNavItems: NavItem[] = [
     {
