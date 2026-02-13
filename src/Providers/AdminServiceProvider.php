@@ -42,7 +42,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'admin');
 
         // Load migrations
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         // Register middleware
         $this->app['router']->aliasMiddleware('admin.share', ShareAdminData::class);
