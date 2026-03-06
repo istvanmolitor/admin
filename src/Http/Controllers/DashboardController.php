@@ -1,6 +1,6 @@
 <?php
 
-namespace Molitor\Admin\Controllers;
+namespace Molitor\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -11,6 +11,6 @@ class DashboardController extends BaseAdminController
      */
     public function index(Request $request)
     {
-        return inertia('Admin/Dashboard');
+        return view('admin::admin');
     }
 }

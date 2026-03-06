@@ -1,6 +1,6 @@
 <?php
 
-namespace Molitor\Admin\Controllers;
+namespace Molitor\Admin\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Molitor\Menu\Facades\Menu;

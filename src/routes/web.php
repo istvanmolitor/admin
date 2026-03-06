@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Molitor\Admin\Controllers\DashboardController;
+use Molitor\Admin\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,9 +12,9 @@ use Molitor\Admin\Controllers\DashboardController;
 |
 */
 
-Route::middleware(config('admin.middleware', ['web', 'auth']))
+Route::middleware(config('admin.middleware', ['web']))
     ->prefix(config('admin.prefix', 'admin'))
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/{any?}', [DashboardController::class, 'index'])->where('any', '.*')->name('admin.dashboard');
     });
 

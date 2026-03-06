@@ -14,7 +14,7 @@ return [
 
     'prefix' => env('ADMIN_PREFIX', 'admin'),
 
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['web'],
 
     'route_namespace' => 'Molitor\\Admin\\Http\\Controllers',
 
