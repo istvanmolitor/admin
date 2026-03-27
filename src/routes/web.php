@@ -17,4 +17,3 @@ Route::middleware(config('admin.middleware', ['web']))
     ->group(function () {
         Route::get('/{any?}', [DashboardController::class, 'index'])->where('any', '.*')->name('admin.dashboard');
     });
-

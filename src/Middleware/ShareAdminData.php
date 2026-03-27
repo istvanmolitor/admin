@@ -28,4 +28,3 @@ class ShareAdminData
         return $next($request);
     }
 }
-

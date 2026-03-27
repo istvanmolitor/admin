@@ -8,6 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class DataTableResource extends JsonResource
 {
     protected $resourceClass;
+
     protected $filters;
 
     public function __construct($resource, $resourceClass, $filters = [])
