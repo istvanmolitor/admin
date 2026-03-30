@@ -10,8 +10,7 @@ class OptionsResource extends JsonResource
         $resource,
         public string $valueField = 'value',
         public string $labelField = 'label'
-    )
-    {
+    ) {
         parent::__construct($resource);
     }
 
