@@ -12,7 +12,7 @@ use Molitor\Admin\Http\Controllers\DashboardController;
 |
 */
 
-Route::middleware(config('admin.middleware', ['web']))
+Route::middleware('web')
     ->prefix(config('admin.prefix', 'admin'))
     ->group(function () {
         Route::get('/{any?}', [DashboardController::class, 'index'])->where('any', '.*')->name('admin.dashboard');
