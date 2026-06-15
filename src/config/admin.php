@@ -38,4 +38,22 @@ return [
             // Add your menu items here
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Search
+    |--------------------------------------------------------------------------
+    |
+    | Register AdminSearch subclasses to extend what the admin search covers.
+    |
+    */
+
+    'search' => [
+        'searchers' => [
+            \Molitor\User\Search\UserSearch::class,
+            \Molitor\Cms\Search\PostSearch::class,
+            \Molitor\Cms\Search\PageSearch::class,
+            \Molitor\Customer\Search\CustomerSearch::class,
+        ],
+    ],
 ];
