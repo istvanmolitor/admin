@@ -50,10 +50,6 @@ return [
 
     'search' => [
         'searchers' => [
-            \Molitor\User\Search\UserSearch::class,
-            \Molitor\Cms\Search\PostSearch::class,
-            \Molitor\Cms\Search\PageSearch::class,
-            \Molitor\Customer\Search\CustomerSearch::class,
         ],
     ],
 ];
