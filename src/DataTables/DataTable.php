@@ -12,7 +12,7 @@ abstract class DataTable
     /** @var DataTableColumn[] */
     private array $columns = [];
 
-    public function __construct(private readonly Request $request)
+    public function __construct(protected readonly Request $request)
     {
         $this->initColumns();
     }
