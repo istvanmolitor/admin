@@ -35,6 +35,17 @@ abstract class DataTable
         return $this->request->input('search') ?: null;
     }
 
+    protected function getDefaultDirection(): string
+    {
+        return 'asc';
+    }
+
+    protected function getDirection(): string
+    {
+        $direction = $this->request->input('direction', $this->getDefaultDirection());
+        return $direction === 'asc' ? 'asc' : 'desc';
+    }
+
     protected function getSearchFields(): array
     {
         return array_values(array_map(
@@ -56,41 +67,90 @@ abstract class DataTable
         return $this->getOrderFields()[0] ?? 'name';
     }
 
-    protected function getFilteredQuery(Builder $query): Builder
+    protected function getSort(): string
     {
-        $searchFields = $this->getSearchFields();
-        $defaultSort = $this->getDefaultSort();
+        $defalutSort = $this->getDefaultSort();
+        $sort = $this->request->input('sort', $defalutSort);
+        if (in_array($sort, $this->getOrderFields())) {
+            return $sort;
+        }
+        return $defalutSort;
+    }
 
-        return $query
-            ->when($this->request->input('search'), function ($query, $search) use ($searchFields) {
-                $query->where(function ($q) use ($search, $searchFields) {
-                    foreach ($searchFields as $index => $field) {
-                        if ($index === 0) {
-                            $q->where($field, 'like', "%{$search}%");
-                        } else {
-                            $q->orWhere($field, 'like', "%{$search}%");
-                        }
-                    }
-                });
-            })
-            ->when($this->request->input('sort'), function ($query, $sort) {
-                $direction = $this->request->input('direction', 'asc');
-                $query->orderBy($sort, $direction);
-            }, function ($query) use ($defaultSort) {
-                if ($defaultSort) {
-                    $query->orderBy($defaultSort, 'asc');
+    protected function applyFilters(Builder $query): Builder
+    {
+        $search = $this->getSearch();
+
+        if ($search === '') {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($search) {
+            foreach ($this->getSearchFields() as $index => $field) {
+                if ($index === 0) {
+                    $q->where($field, 'like', "%{$search}%");
+                } else {
+                    $q->orWhere($field, 'like', "%{$search}%");
                 }
-            });
+            }
+        });
+    }
+
+    protected function applySort(Builder $query): Builder
+    {
+        return $query->orderBy($this->getSort(), $this->getDirection());
+    }
+
+    protected function getBaseQuery(): Builder
+    {
+        return $this->getModelClass()::query();
+    }
+
+    public function query(Builder $query): Builder
+    {
+        return $query;
     }
 
     protected function buildQuery(): Builder
     {
-        return $this->getFilteredQuery($this->getModelClass()::query());
+        return $this->applyFilters($this->getBaseQuery());
+    }
+
+    protected function getPerPage(): int
+    {
+        return $this->request->integer('per_page', 10);
     }
 
     protected function paginate(): LengthAwarePaginator
     {
-        return $this->buildQuery()->paginate($this->request->integer('per_page', 10));
+        return $this->buildQuery()->paginate($this->getPerPage());
+    }
+
+    protected function getFilters(): array
+    {
+        return [
+            'search' => $this->getSearch(),
+            'sort' => $this->getSort(),
+            'direction' => $this->getDirection(),
+        ];
+    }
+
+    private function buildMeta(LengthAwarePaginator $data): array
+    {
+        return [
+            'current_page' => $data->currentPage(),
+            'last_page' => $data->lastPage(),
+            'per_page' => $data->perPage(),
+            'total' => $data->total(),
+        ];
+    }
+
+    protected function getResourceAdditionals(LengthAwarePaginator $data): array
+    {
+        return [
+            'meta' => $this->buildMeta($data),
+            'filters' => $this->getFilters(),
+        ];
     }
 
     public function response(): AnonymousResourceCollection
@@ -98,14 +158,6 @@ abstract class DataTable
         $data = $this->paginate();
         $resourceClass = $this->getResourceClass();
 
-        return $resourceClass::collection($data)->additional([
-            'meta' => [
-                'current_page' => $data->currentPage(),
-                'last_page' => $data->lastPage(),
-                'per_page' => $data->perPage(),
-                'total' => $data->total(),
-            ],
-            'filters' => $this->request->only(['search', 'sort', 'direction']),
-        ]);
+        return $resourceClass::collection($data)->additional($this->getResourceAdditionals($data));
     }
 }
