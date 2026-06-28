@@ -153,7 +153,7 @@ abstract class DataTable
         ];
     }
 
-    public function response(): AnonymousResourceCollection
+    public function getResponse(): AnonymousResourceCollection
     {
         $data = $this->paginate();
         $resourceClass = $this->getResourceClass();
