@@ -126,12 +126,27 @@ abstract class DataTable
         return $this->buildQuery()->paginate($this->getPerPage());
     }
 
+    protected function getSearchPlaceholder(): string
+    {
+        return 'Keresés...';
+    }
+
     protected function getFilters(): array
     {
         return [
             'search' => $this->getSearch(),
             'sort' => $this->getSort(),
             'direction' => $this->getDirection(),
+        ];
+    }
+
+    protected function getConfig(): array
+    {
+        return [
+            'searchable' => count($this->getSearchFields()) > 0,
+            'search_placeholder' => $this->getSearchPlaceholder(),
+            'default_sort' => $this->getDefaultSort(),
+            'default_direction' => $this->getDefaultDirection(),
         ];
     }
 
@@ -159,6 +174,7 @@ abstract class DataTable
             'meta' => $this->buildMeta($data),
             'filters' => $this->getFilters(),
             'columns' => $this->getColumnsForClient(),
+            'config' => $this->getConfig(),
         ];
     }
 
