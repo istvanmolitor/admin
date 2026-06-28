@@ -113,7 +113,7 @@ abstract class DataTable
 
     protected function buildQuery(): Builder
     {
-        return $this->applyFilters($this->getBaseQuery());
+        return $this->applySort($this->applyFilters($this->getBaseQuery()));
     }
 
     protected function getPerPage(): int
