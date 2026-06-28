@@ -64,7 +64,7 @@ abstract class DataTable
 
     protected function getDefaultSort(): string
     {
-        return $this->getOrderFields()[0] ?? 'name';
+        return $this->getOrderFields()[0] ?? '';
     }
 
     protected function getSort(): string
@@ -113,7 +113,7 @@ abstract class DataTable
 
     protected function buildQuery(): Builder
     {
-        return $this->applySort($this->applyFilters($this->getBaseQuery()));
+        return $this->applySort($this->applyFilters($this->query($this->getBaseQuery())));
     }
 
     protected function getPerPage(): int
