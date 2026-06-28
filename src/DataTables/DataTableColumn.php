@@ -5,8 +5,10 @@ namespace Molitor\Admin\DataTables;
 class DataTableColumn
 {
     private string $name;
+    private ?string $label = null;
     private bool $searchable = false;
     private bool $orderable = false;
+    private bool $hidden = false;
 
     public function __construct(string $name)
     {
@@ -21,6 +23,18 @@ class DataTableColumn
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label ?? ucfirst(str_replace('_', ' ', $this->name));
+    }
+
+    public function setLabel(string $label): static
+    {
+        $this->label = $label;
 
         return $this;
     }
@@ -47,5 +61,26 @@ class DataTableColumn
         $this->orderable = $orderable;
 
         return $this;
+    }
+
+    public function isHidden(): bool
+    {
+        return $this->hidden;
+    }
+
+    public function setHidden(bool $hidden = true): static
+    {
+        $this->hidden = $hidden;
+
+        return $this;
+    }
+
+    public function toClientArray(): array
+    {
+        return [
+            'key' => $this->name,
+            'label' => $this->getLabel(),
+            'sortable' => $this->orderable,
+        ];
     }
 }

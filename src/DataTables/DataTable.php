@@ -145,11 +145,20 @@ abstract class DataTable
         ];
     }
 
+    protected function getColumnsForClient(): array
+    {
+        return array_values(array_map(
+            fn(DataTableColumn $c) => $c->toClientArray(),
+            array_filter($this->columns, fn(DataTableColumn $c) => ! $c->isHidden())
+        ));
+    }
+
     protected function getResourceAdditionals(LengthAwarePaginator $data): array
     {
         return [
             'meta' => $this->buildMeta($data),
             'filters' => $this->getFilters(),
+            'columns' => $this->getColumnsForClient(),
         ];
     }
 
