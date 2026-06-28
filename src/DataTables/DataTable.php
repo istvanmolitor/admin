@@ -77,7 +77,7 @@ abstract class DataTable
         return $defalutSort;
     }
 
-    protected function applyFilters(Builder $query): Builder
+    private function applyFilters(Builder $query): Builder
     {
         $search = $this->getSearch();
 
@@ -96,7 +96,7 @@ abstract class DataTable
         });
     }
 
-    protected function applySort(Builder $query): Builder
+    private function applySort(Builder $query): Builder
     {
         return $query->orderBy($this->getSort(), $this->getDirection());
     }
