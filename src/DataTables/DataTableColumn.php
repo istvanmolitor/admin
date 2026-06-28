@@ -5,6 +5,7 @@ namespace Molitor\Admin\DataTables;
 class DataTableColumn
 {
     private string $name;
+    private ?string $queryName = null;
     private ?string $label = null;
     private bool $searchable = false;
     private bool $orderable = false;
@@ -23,6 +24,18 @@ class DataTableColumn
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getQueryName(): string
+    {
+        return $this->queryName ?? $this->name;
+    }
+
+    public function setQueryName(string $queryName): static
+    {
+        $this->queryName = $queryName;
 
         return $this;
     }

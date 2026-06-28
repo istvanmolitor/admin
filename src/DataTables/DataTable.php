@@ -49,7 +49,7 @@ abstract class DataTable
     protected function getSearchFields(): array
     {
         return array_values(array_map(
-            fn($c) => $c->getName(),
+            fn($c) => $c->getQueryName(),
             array_filter($this->columns, fn($c) => $c->isSearchable())
         ));
     }
@@ -60,6 +60,11 @@ abstract class DataTable
             fn($c) => $c->getName(),
             array_filter($this->columns, fn($c) => $c->isOrderable())
         ));
+    }
+
+    private function getOrderFieldQueryName(string $name): string
+    {
+        return isset($this->columns[$name]) ? $this->columns[$name]->getQueryName() : $name;
     }
 
     protected function getDefaultSort(): string
@@ -98,7 +103,8 @@ abstract class DataTable
 
     private function applySort(Builder $query): Builder
     {
-        return $query->orderBy($this->getSort(), $this->getDirection());
+        $sort = $this->getSort();
+        return $query->orderBy($this->getOrderFieldQueryName($sort), $this->getDirection());
     }
 
     protected function getBaseQuery(): Builder
