@@ -11,11 +11,14 @@ class DataTableResource extends JsonResource
 
     protected $filters;
 
-    public function __construct($resource, $resourceClass, $filters = [])
+    protected $columns;
+
+    public function __construct($resource, $resourceClass, $filters = [], $columns = [])
     {
         parent::__construct($resource);
         $this->resourceClass = $resourceClass;
         $this->filters = $filters;
+        $this->columns = $columns;
     }
 
     public function toArray(Request $request): array
@@ -29,6 +32,7 @@ class DataTableResource extends JsonResource
                 'total' => $this->resource->total(),
             ],
             'filters' => $this->filters,
+            'columns' => $this->columns,
         ];
     }
 }
