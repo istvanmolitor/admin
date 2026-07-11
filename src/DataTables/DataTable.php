@@ -9,11 +9,13 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 abstract class DataTable
 {
+    protected Request $request;
     /** @var DataTableColumn[] */
     private array $columns = [];
 
-    public function __construct(protected readonly Request $request)
+    public function __construct(Request $request = null)
     {
+        $this->request = $request ?? request();
         $this->initColumns();
     }
 
